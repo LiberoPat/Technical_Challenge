@@ -20,11 +20,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.tps.challenge.R
-import com.tps.challenge.network.CountryFeedViewModelFactory
 import com.tps.challenge.network.CountryFeedViewModelProvider
-import com.tps.challenge.network.FetchCountriesUseCase
-import com.tps.challenge.network.createTPSService
-import com.tps.challenge.network.repository.CountryRepository
 import kotlinx.coroutines.launch
 
 /**
@@ -70,8 +66,6 @@ class CountryFeedFragment : Fragment() {
             layoutManager = LinearLayoutManager(activity)
             adapter = countryFeedAdapter
         }
-
-
 
         swipeRefreshLayout.setOnRefreshListener {
             if (requireContext().isNetworkAvailable()) {
