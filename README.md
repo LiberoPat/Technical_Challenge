@@ -7,8 +7,8 @@ A simple Android app that displays a paginated list of countries with details su
 * Network Error Handling:** Shows an error message when the device is offline or network is unavailable.
 * Manual Dependency Injection:** All dependencies are manually created without using Dagger or Hilt.
 * MVVM
-
--
+  
+---
 
 To Improve: 
 * pagination for the list
