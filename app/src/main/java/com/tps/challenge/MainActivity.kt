@@ -12,10 +12,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val countryFeedFragment = CountryFeedFragment()
-        supportFragmentManager.beginTransaction()
-            .replace(
-                R.id.container, countryFeedFragment)
-            .commit()
+        if (savedInstanceState == null) {
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.container, CountryFeedFragment())
+                .commit()
+        }
     }
 }
