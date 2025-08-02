@@ -11,6 +11,7 @@ A simple Android app that displays a paginated list of countries with details su
 -
 
 To Improve: 
+* pagination for the list
 * add caching in viewmodel
 * add central error handling
 * branch coverage tests
