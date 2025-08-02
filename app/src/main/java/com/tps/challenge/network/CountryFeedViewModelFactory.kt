@@ -6,13 +6,13 @@ import com.tps.challenge.features.countryfeed.CountryFeedViewModel
 import com.tps.challenge.network.repository.CountryRepository
 
 class CountryFeedViewModelFactory(
-    private val repository: CountryRepository
+    private val fetchCountriesUseCase: FetchCountriesUseCase
 ) : ViewModelProvider.Factory {
 
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(CountryFeedViewModel::class.java)) {
-            return CountryFeedViewModel(repository) as T
+            return CountryFeedViewModel(fetchCountriesUseCase) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }

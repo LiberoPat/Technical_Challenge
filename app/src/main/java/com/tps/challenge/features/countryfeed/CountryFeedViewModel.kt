@@ -3,6 +3,7 @@ package com.tps.challenge.features.countryfeed
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.tps.challenge.network.FetchCountriesUseCase
 import com.tps.challenge.network.model.CountryResponse
 import com.tps.challenge.network.repository.CountryRepository
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -10,7 +11,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
 class CountryFeedViewModel(
-    private val repository: CountryRepository
+    private val fetchCountriesUseCase: FetchCountriesUseCase
 ) : ViewModel() {
 
     private val _countryFeed = MutableStateFlow<List<CountryResponse>>(emptyList())
@@ -25,7 +26,8 @@ class CountryFeedViewModel(
         viewModelScope.launch {
             _isLoading.value = true
             try {
-                _countryFeed.value = repository.getCountryFeed()
+                val countries = fetchCountriesUseCase.execute()
+                _countryFeed.value = countries
             } catch (e: Exception) {
                 Log.e("CountryFeedViewModel", "Failed to fetch countries", e)
             } finally {
@@ -34,4 +36,5 @@ class CountryFeedViewModel(
         }
     }
 }
+
 

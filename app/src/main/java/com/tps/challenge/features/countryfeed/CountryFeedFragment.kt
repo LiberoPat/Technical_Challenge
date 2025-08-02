@@ -21,6 +21,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.tps.challenge.R
 import com.tps.challenge.network.CountryFeedViewModelFactory
+import com.tps.challenge.network.FetchCountriesUseCase
 import com.tps.challenge.network.createTPSService
 import com.tps.challenge.network.repository.CountryRepository
 import kotlinx.coroutines.launch
@@ -40,7 +41,8 @@ class CountryFeedFragment : Fragment() {
 
         val service = createTPSService()
         val repository = CountryRepository(service)
-        val factory = CountryFeedViewModelFactory(repository)
+        val useCase = FetchCountriesUseCase(repository)
+        val factory = CountryFeedViewModelFactory(useCase)
 
         viewModel = ViewModelProvider(this, factory)[CountryFeedViewModel::class.java]
     }
